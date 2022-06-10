@@ -29,7 +29,7 @@ module.exports = async (client,PG,Ascii) => {
         // check perms
         if(command.permission){
             if(Perms.includes(command.permission)){
-                command.defaultPermission=false;
+                command.defaultPermission=true;
             }else{
                 return Table.addRow(command.name,'⚠️ Failed','Missing perms or invalid.')
             }
