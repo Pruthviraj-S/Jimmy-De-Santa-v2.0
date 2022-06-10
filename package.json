@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "ascii-table": "^0.0.9",
+    "discord.js": "^13.8.0",
+    "glob": "^8.0.3",
+    "mongoose": "^6.3.6",
+    "nodemon": "^2.0.16"
+  }
+}

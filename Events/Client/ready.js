@@ -1,6 +1,6 @@
-const { guildid, dbtoken } = require('../../config.json');
-const { Client, MessageEmbed, CommandInteraction, Guild } = require('discord.js')
-const { mongoose, connection } = require('mongoose')
+const { dbtoken } = require('../../config.json');
+const { Client,CommandInteraction } = require('discord.js')
+const { mongoose } = require('mongoose')
 
 module.exports = {
     name: 'ready',
