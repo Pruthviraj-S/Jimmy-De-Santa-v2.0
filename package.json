@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "@napi-rs/canvas": "^0.1.22",
     "ascii-table": "^0.0.9",
     "discord.js": "^13.8.0",
     "glob": "^8.0.3",
@@ -10,10 +11,9 @@
   "description": "Updated with Discord.js v13",
   "version": "1.0.0",
   "main": "index.js",
-  "devDependencies": {},
   "scripts": {
     "test": "/test",
-    "dev":"nodemon index.js"
+    "dev": "nodemon index.js"
   },
   "repository": {
     "type": "git",
