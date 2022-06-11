@@ -16,7 +16,8 @@ module.exports = async (client,PG,Ascii) => {
     // initialize array for storing commands
     CommandsArray = [];
     // Insert data into table
-    (await PG(`${process.cwd().replace(/\\/g,"/")}/Commands/*/*.js`)).map(async (file) => {
+    const commandFiles = await PG(`${process.cwd().replace(/\\/g,"/")}/Commands/*/*.js`)
+    commandFiles.map(async (file) => {
         const command = require(file);
         // check name
         if(!command.name){

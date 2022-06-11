@@ -3,7 +3,7 @@ const {CommandInteraction, Client} =  require('discord.js')
 module.exports = {
     name: 'ping',
     description: 'Bot Ping',
-    permission: '',
+    permission: 'SEND_MESSAGES',
     /**
      * 
      * @param {CommandInteraction} interaction 

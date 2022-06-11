@@ -1,0 +1,104 @@
+const {CommandInteraction,MessageEmbed,Client, MessageActionRow, MessageSelectMenu} = require('discord.js')
+const {promisify} = require('util');
+const { glob } = require('glob');
+const PG = promisify(glob);
+const {guildid,clientid} = require('../config.json');
+
+module.exports={
+    name:'help',
+    description:'Shows information on Bot and provides list of available commands.',
+    permission:'',
+    /**
+     * 
+     * @param {CommandInteraction} interaction 
+     * @param {Client} client 
+     */
+    async execute(interaction,client){
+        // Read Command Dirs
+        const files = await PG(`${process.cwd().replace(/\\/g,"/")}/Commands/*`)
+        const directories=[...new Set(files.map((cmd)=>cmd.split('/')[7])),];
+        // const directories = [...new Set(client.guilds.cache.get(guildid).commands.cache.map((cmd)=>cmd.name)),];
+        console.log(directories)
+        // Format 
+        const formatString = (str)=>`${str[0].toUpperCase()}${str.slice(1).toLowerCase}`;
+        // categories
+        const categories = directories.map((dir)=>{
+            console.log(dir)
+            const getCommands = client.guilds.cache.get(guildid).commands.cache.filter(
+                (cmd) => cmd.directory === dir
+            ).map(cmd => {
+                return {
+                    name:cmd.name,
+                    description:cmd.description,
+                };
+            });
+            console.log(getCommands)
+            return {
+                directory:formatString(dir),
+                commands: getCommands,
+            };
+        });
+        // info embed
+        const iemb = new MessageEmbed()
+            .setColor('DARK_VIVID_PINK')
+            .setTitle(`Help : **${client.user.username}**`)
+            .setDescription(`**BotName:** ${client.user.username} \n **Ping:** ${client.ws.ping} \n **Uptime:** <t:${parseInt(client.readyTimestamp/1000)}:R>`)
+        // menu embed
+        const memb = new MessageEmbed()
+                .setColor('AQUA')
+                .setDescription(`Please Choose a Category from drop down menu.`)
+        // component: selection menu
+        const components = (state) => [
+            new MessageActionRow().addComponents(
+                new MessageSelectMenu()
+                    .setCustomId('help-menu')
+                    .setPlaceholder('Select a Category.')
+                    .setDisabled(state)
+                    .addOptions(
+                        categories.map((cmd)=>{
+                            return {
+                                label:cmd.directory,
+                                value:cmd.directory,
+                                description:`Commands from ${cmd.directory} category.`
+                            };
+                        })
+                    )
+            ),
+        ];
+        // initial message
+        const initMessage = await interaction.channel.send({embeds:[iemb,memb],components:components(false)});
+        // filter for bot
+        const filter = (interaction) => 
+            interaction.user.id === interaction.author.id;
+        // menu collector
+        const collector = interaction.channel.createMessageComponentCollector({
+            filter,
+            componentType:'SELECT_MENU',
+            time:3000,
+        });
+        // collector start
+        collector.on('collect',(interaction)=>{
+            const [directory]=interaction.values;
+            const category = categories.find((x)=>x.directory.toLowerCase()===directory);
+            // category embed
+            const cemb = new MessageEmbed()
+                .setTitle(`${directory} commands.`)
+                .setDescription(`**List of commands and Description:**`)
+                .addFields(
+                    category.commands.map((cmd)=>{
+                        return {
+                            name:`\`${cmd.name}\``,
+                            value:cmd.description,
+                            inline:true,
+                        };
+                    })
+                );
+            interaction.update({embeds:[cemb]})
+        });
+
+        // collector end
+        collector.on('end',()=>{
+            initMessage.edit({components:components(true)});
+        });
+    },
+};
