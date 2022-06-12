@@ -1,5 +1,5 @@
 // import perms validation
-const { Perms } = require('../validation/Permissions');
+const { Perms } = require('../Validation/Permissions');
 // import pre-reqs
 const {Client} =  require('discord.js');
 const {guildid} = require('../config.json');
