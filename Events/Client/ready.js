@@ -1,4 +1,3 @@
-const { dbtoken } = require('../../config.json');
 const { Client,CommandInteraction } = require('discord.js')
 const { mongoose } = require('mongoose')
 
@@ -23,8 +22,8 @@ module.exports = {
         console.log(`Bot logged in as ${client.user.username} and ID: ${client.user.id}`)
 
         // Connect MongoDb
-        if (!dbtoken) return;
-        mongoose.connect(dbtoken, {
+        if (!process.env.DB_TOKEN) return;
+        mongoose.connect(process.env.DB_TOKEN, {
             useNewUrlParser: true,
             useUnifiedTopology: true
         }).then(()=>{
