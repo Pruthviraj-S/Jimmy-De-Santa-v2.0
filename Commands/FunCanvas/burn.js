@@ -1,4 +1,4 @@
-const {CommandInteraction,MessageEmbed, MessageAttachment, Typing} = require('discord.js')
+const {CommandInteraction, MessageAttachment} = require('discord.js')
 const {createCanvas,loadImage} = require('canvas')
 
 module.exports = {
