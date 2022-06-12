@@ -24,7 +24,7 @@ const Ascii = require('ascii-table');
 
 // create collections
 client.commands = new Collection();
-
+// Handler import
 ["EventHandler","CommandHandler"].forEach(handler => {
     require(`./Handlers/${handler}`)(client,PG,Ascii);
 });
