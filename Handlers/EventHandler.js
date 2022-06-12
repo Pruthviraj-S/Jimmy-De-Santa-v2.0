@@ -1,6 +1,6 @@
 const {Client} = require('discord.js')
 // import validation
-const { Events } = require('../validation/EventNames.js');
+const { Events } = require('../Validation/EventNames');
 /**
  * 
  * @param {Client} client 
