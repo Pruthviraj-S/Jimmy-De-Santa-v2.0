@@ -16,7 +16,7 @@ module.exports = {
         // Embed make
         const statusemb = new MessageEmbed()
         .setColor('DARK_AQUA')
-        .setDescription(`**Status:** ✅ Online \n **Ping:** ${client.ws.ping}ms \n **Uptime:** <t:${parseInt(client.uptime/1000000)}:R> \n **Database:** ${switch_status(connection.readyState)}`)
+        .setDescription(`**Status:** ✅ Online \n **Ping:** ${client.ws.ping}ms \n **Uptime:** <t:${parseInt(client.readyTimestamp/1000)}:R> \n **Database:** ${switch_status(connection.readyState)}`)
         // send embed
         interaction.reply({embeds:[statusemb]})
     }
