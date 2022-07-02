@@ -11,7 +11,7 @@
   },
   "name": "rhtsfunbot",
   "description": "Updated with Discord.js v13",
-  "version": "1.0.0",
+  "version": "1.6.9",
   "main": "index.js",
   "scripts": {
     "test": "/test",
