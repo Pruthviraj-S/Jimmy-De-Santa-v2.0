@@ -4,8 +4,9 @@
 const { Client, Intents, Collection } = require('discord.js');
 
 //  Import data from config.json
-const { prefix,guildid, clientid } = require('./config.json');
-require('dotenv').config();
+const { prefix,guildid, clientid , BOT_TOKEN} = require('./config.json');
+// require('dotenv').config();
+// console.log(process.env)
 
 // Create a new client instance, https://discord.js.org/#/docs/main/stable/class/Intents
 const client = new Client({ 
@@ -29,4 +30,4 @@ client.commands = new Collection();
     require(`./Handlers/${handler}`)(client,PG,Ascii);
 });
 // Login to Discord with your client's token
-client.login(process.env.BOT_TOKEN);
+client.login(BOT_TOKEN);

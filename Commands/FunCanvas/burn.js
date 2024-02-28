@@ -1,5 +1,5 @@
 const {CommandInteraction, MessageAttachment} = require('discord.js')
-const {createCanvas,loadImage} = require('canvas')
+const {createCanvas,loadImage} = require('@napi-rs/canvas')
 
 module.exports = {
     name:'burn',

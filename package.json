@@ -1,33 +1,17 @@
 {
   "dependencies": {
+    "@napi-rs/canvas": "^0.1.31",
     "ascii-table": "^0.0.9",
-    "canvas": "^2.9.1",
-    "discord.js": "^13.8.0",
-    "dotenv": "^16.0.1",
+    "discord.js": "^13.12.0",
+    "dotenv": "^16.0.3",
     "glob": "^8.0.3",
-    "mongoose": "^6.3.6",
-    "nodemon": "^2.0.16",
-    "superagent": "^7.1.6"
+    "mongoose": "^6.8.2",
+    "nodemon": "^2.0.20",
+    "pm2": "^5.2.2",
+    "superagent": "^8.0.6"
   },
-  "name": "rhtsfunbot",
-  "description": "Updated with Discord.js v13",
-  "version": "1.6.9",
-  "main": "index.js",
   "scripts": {
     "test": "/test",
     "dev": "nodemon index.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Pruthviraj-S/RhtsFunBot.git"
-  },
-  "keywords": [
-    "Bot"
-  ],
-  "author": "https://github.com/Pruthviraj-S",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Pruthviraj-S/RhtsFunBot/issues"
-  },
-  "homepage": "https://github.com/Pruthviraj-S/RhtsFunBot#readme"
+  }
 }
